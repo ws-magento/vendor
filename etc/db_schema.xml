@@ -6,7 +6,7 @@
         <column xsi:type="varchar" name="name" nullable="false" length="255" />
         <column xsi:type="text" name="description" nullable="true" />
         <column xsi:type="varchar" name="image" nullable="true" />
-        <column xsi:type="date" name="date_added" nullable="false" />
+        <column xsi:type="timestamp" name="date_added" nullable="false" default="CURRENT_TIMESTAMP" on_update="false"  />
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="manufacturer_id"/>
         </constraint>

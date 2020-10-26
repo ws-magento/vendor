@@ -62,9 +62,6 @@ class Save extends Items
                     }
                 }
 
-                $timezone = $this->_objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime');
-                $data['date_add'] = $timezone->gmtDate();
-
                 $model->setData($data);
                 $session = $this->_objectManager->get('Magento\Backend\Model\Session');
                 $session->setPageData($model->getData());
