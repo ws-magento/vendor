@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="manufacturer" resource="default" engine="innodb" comment="manufacturers">
+        <column xsi:type="int" name="manufacturer_id" padding="11" unsigned="false" nullable="false" identity="true" />
+        <column xsi:type="varchar" name="name" nullable="false" length="255" />
+        <column xsi:type="text" name="description" nullable="true" />
+        <column xsi:type="varchar" name="image" nullable="true" />
+        <column xsi:type="date" name="date_added" nullable="false" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="manufacturer_id"/>
+        </constraint>
+        <index referenceId="name" indexType="fulltext">
+            <column name="name"/>
+            <column name="description"/>
+            <column name="image"/>
+        </index>
+    </table>
+</schema>

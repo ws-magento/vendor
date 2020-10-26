@@ -1,0 +1,26 @@
+{
+    "name": "ws/manufacturer",
+    "description": "Simple manufacturer task",
+    "type": "magento2-module",
+    "version": "0.0.20",
+    "license":  [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Rapatij Oleksandr",
+            "email": "r@ws.cv.ua",
+            "homepage": "https://ws.cv.ua"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ws\\Man\\": ""
+        }
+    }
+
+}

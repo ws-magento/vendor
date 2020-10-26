@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="WS_Manufacturer::man" title="Vendors" translate="title" module="WS_Manufacturer" parent="Magento_Catalog::catalog" sortOrder="50" dependsOnModule="WS_Manufacturer" resource="WS_Manufacturer::man"/>
+        <add id="WS_Manufacturer::man_all" title="Show all" translate="title" module="WS_Manufacturer" parent="WS_Manufacturer::man" sortOrder="10" dependsOnModule="WS_Manufacturer" action="manufacturer/all" resource="WS_Manufacturer::man"/>
+        <add id="WS_Manufacturer::new" title="Create new" translate="title" module="WS_Manufacturer" parent="WS_Manufacturer::man" sortOrder="10" dependsOnModule="WS_Manufacturer" action="manufacturer/all/new" resource="WS_Manufacturer::man"/>
+    </menu>
+</config>

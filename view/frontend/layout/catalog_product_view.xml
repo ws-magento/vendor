@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.price">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.manufacturer_id"
+                   template="WS_Manufacturer::product/view/attribute.phtml" after="product.price.final">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getManufacturerId</argument>
+                    <argument name="at_code" xsi:type="string">manufacturer_id</argument>
+                    <argument name="css_class" xsi:type="string">image float-right</argument>
+                    <argument name="at_type" xsi:type="string">image</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

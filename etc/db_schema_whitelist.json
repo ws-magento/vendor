@@ -1,0 +1,30 @@
+{
+    "manufacturer": {
+        "column": {
+            "manufacturer_id": true,
+            "name": true,
+            "description": true,
+            "image": true,
+            "date_added": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "manufacturer_rel": {
+        "column": {
+            "id": true,
+            "product_id": true,
+            "manufacturer_id": true
+        },
+        "index": {
+            "MANUFACTURER_REL_PRODUCT_ID": true,
+            "MANUFACTURER_REL_MANUFACTURER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MANUFACTURER_REL_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true,
+            "MANUFACTURER_REL_MANUFACTURER_ID_MANUFACTURER_MANUFACTURER_ID": true
+        }
+    }
+}
