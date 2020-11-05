@@ -2,38 +2,28 @@
 
 namespace WS\Manufacturer\Controller\Adminhtml\All;
 
-use Magento\Framework\App\ResponseInterface;
-
 class Update extends Items
 {
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
-
-        $model = $this->_objectManager->create('WS\Manufacturer\Model\Manufacturer');
-
         if ($id) {
-            $model->load($id);
-            if (!$model->getId()) {
+            if (!$manufacturer = $this->manRepository->getById($id)) {
                 $this->messageManager->addError(__('The manufacturer does\'nt exists.'));
-                $this->_redirect('manufacturer/all/*');
                 return;
             }
-        }
-        // set entered data if was error when we do save
-        $data = $this->_objectManager->get('Magento\Backend\Model\Session')->getPageData(true);
-        if (!empty($data)) {
-            $model->addData($data);
-        }
-        $this->_coreRegistry->register('current_man', $model);
-        $this->_initAction();
-        if ($model->getId()) {
-            $title = __('The Manufacturer Updating');
         } else {
-            $title = __('New Manufacturer');
+            $manufacturer = $this->manFactory->create();
         }
-        $this->_view->getPage()->getConfig()->getTitle()->prepend($title);
-        $this->_view->getLayout()->getBlock('manufacturer_all_update');
-        $this->_view->renderLayout();
+
+        $this->_coreRegistry->register('current_man', $manufacturer);
+
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->resultPageFactory->create();
+        $title = $manufacturer->getId()
+            ? __('The Manufacturer Updating')
+            : __('New Manufacturer');
+        $resultPage->getConfig()->getTitle()->prepend($title);
+        return $resultPage;
     }
 }

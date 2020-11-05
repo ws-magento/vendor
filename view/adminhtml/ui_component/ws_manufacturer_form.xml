@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ws_manufacturer_form.manufacturer_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="WS\Manufacturer\Block\Adminhtml\Edit\SaveButton"/>
+<!--            <button name="save" class="Magento\Cms\Block\Adminhtml\Block\Edit\SaveButton"/>-->
+            <button name="delete" class="Magento\Cms\Block\Adminhtml\Block\Edit\DeleteButton"/>
+            <button name="back" class="Magento\Cms\Block\Adminhtml\Block\Edit\BackButton"/>
+        </buttons>
+        <namespace>ws_manufacturer_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>ws_manufacturer_form.manufacturer_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="manufacturer_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="manufacturer/edit/save"/>
+        </settings>
+        <dataProvider class="WS\Manufacturer\Model\Manufacturer\DataProvider" name="manufacturer_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>manufacturer_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="manufacturer_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>manufacturer_id</dataScope>
+            </settings>
+        </field>
+        <field name="name" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">manufacturer</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Manufacturer name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+<!--        <field name="image" sortOrder="20" formElement="input">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="source" xsi:type="string">manufacturer</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--            <settings>-->
+<!--                <validation>-->
+<!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+<!--                </validation>-->
+<!--                <dataType>text</dataType>-->
+<!--                <label translate="true">Manufacturer name</label>-->
+<!--                <dataScope>image</dataScope>-->
+<!--            </settings>-->
+<!--        </field>-->
+
+<!--        <field name="image" formElement="imageUploader">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="source" xsi:type="string">manufacturer</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--            <settings>-->
+<!--                <elementTmpl>ui/form/element/uploader/image</elementTmpl>-->
+<!--                <dataType>string</dataType>-->
+<!--                <label translate="true">Manufacturer Image</label>-->
+<!--                <visible>true</visible>-->
+<!--                <required>false</required>-->
+<!--            </settings>-->
+<!--            <formElements>-->
+<!--                <imageUploader>-->
+<!--                    <settings>-->
+<!--                        <required>false</required>-->
+<!--                        <uploaderConfig>-->
+<!--                            <param xsi:type="url" name="url" path="manufacturer/all/upload"/>-->
+<!--                        </uploaderConfig>-->
+<!--                        <source>manufacturer</source>-->
+<!--                        <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>-->
+<!--                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>-->
+<!--                        <openDialogTitle>Media Gallery</openDialogTitle>-->
+<!--&lt;!&ndash;                        <initialMediaGalleryOpenSubpath>ws/category</initialMediaGalleryOpenSubpath>&ndash;&gt;-->
+<!--                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>-->
+<!--                        <maxFileSize>4194304</maxFileSize>-->
+<!--                    </settings>-->
+<!--                </imageUploader>-->
+<!--            </formElements>-->
+<!--        </field>-->
+
+<!--        <field name="image">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="dataType" xsi:type="string">string</item>-->
+<!--                    <item name="source" xsi:type="string">manufacturer</item>-->
+<!--                    <item name="label" xsi:type="string" translate="true">Manufacturer Image</item>-->
+<!--                    <item name="visible" xsi:type="boolean">true</item>-->
+<!--                    <item name="formElement" xsi:type="string">fileUploader</item>-->
+<!--                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>-->
+<!--&lt;!&ndash;                    <item name="previewTmpl" xsi:type="string">WS_Manufacturer/image-preview</item>&ndash;&gt;-->
+<!--                    <item name="required" xsi:type="boolean">false</item>-->
+<!--                    <item name="isMultipleFiles" xsi:type="boolean">false</item>-->
+<!--&lt;!&ndash;                    <item name="sortOrder" xsi:type="number">30</item>&ndash;&gt;-->
+<!--                    <item name="uploaderConfig" xsi:type="array">-->
+<!--                        <item name="url" xsi:type="url" path="manufacturer/all/upload"/>-->
+<!--                    </item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--        </field>-->
+
+
+                <field name="image" formElement="imageUploader">
+            <settings>
+                <!--                <notice translate="true">Some notice.</notice>-->
+                <label translate="true">Manufacturer logo</label>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>1024000</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="manufacturer/all/upload"/>
+<!--                            <param xsi:type="string" name="url">manufacturer/all/upload</param>-->
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+
+        <field name="description" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+<!--                    <class name="admin__field-wide">true</class>-->
+                </additionalClasses>
+                <label>Manufacturer description</label>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

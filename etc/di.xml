@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="WS\Manufacturer\Api\ManufacturerRepositoryInterface" type="WS\Manufacturer\Model\ManufacturerRepository" />
+    <preference for="WS\Manufacturer\Api\Data\ManufacturerInterface" type="WS\Manufacturer\Model\Manufacturer" />
+    <preference for="WS\Manufacturer\Api\Data\ManufacturerSearchResultsInterface" type="WS\Manufacturer\Model\ManufacturerSearchResults" />
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="ws_manufacturer_all_listing_data_source" xsi:type="string">WS\Manufacturer\Model\ResourceModel\Manufacturer\Collection</item>
+                <item name="ws_manufacturer_all_listing_data_source" xsi:type="string">WS\Manufacturer\Model\ResourceModel\Manufacturer\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-    <virtualType name="WS\Manufacturer\Model\ResourceModel\Manufacturer\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+
+    <type name="WS\Manufacturer\Model\ResourceModel\Manufacturer\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">manufacturer</argument>
+            <argument name="eventPrefix" xsi:type="string">manufacturer_all_collection</argument>
+<!--            <argument name="eventObject" xsi:type="string">block_grid_collection</argument>-->
             <argument name="resourceModel" xsi:type="string">WS\Manufacturer\Model\ResourceModel\Manufacturer</argument>
         </arguments>
+    </type>
+
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="WS\Manufacturer\Api\Data\ManufacturerInterface" xsi:type="string">WS\Manufacturer\Api\ManufacturerRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="ManufacturerImage" type="WS\Manufacturer\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">manufacturer/images</argument>
+            <argument name="basePath" xsi:type="string">manufacturer/images</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
     </virtualType>
+    <type name="WS\Manufacturer\Controller\Adminhtml\All\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ManufacturerImage</argument>
+        </arguments>
+    </type>
 </config>

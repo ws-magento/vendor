@@ -15,6 +15,7 @@ class Collection extends AbstractCollection
      */
     protected function _construct()
     {
-        $this->_init('WS\Manufacturer\Model\Manufacturer', 'WS\Manufacturer\Model\ResourceModel\Manufacturer');
+//        $this->_init(\WS\Manufacturer\Model\Manufacturer::class, \WS\Manufacturer\Model\ResourceModel\Manufacturer::class);
+        $this->_init('\WS\Manufacturer\Model\Manufacturer', '\WS\Manufacturer\Model\ResourceModel\Manufacturer');
     }
 }

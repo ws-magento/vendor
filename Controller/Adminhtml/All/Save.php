@@ -3,7 +3,6 @@
 namespace WS\Manufacturer\Controller\Adminhtml\All;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
-use WS\Manufacturer\Controller\Adminhtml\All\Items;
 
 class Save extends Items
 {
@@ -14,11 +13,11 @@ class Save extends Items
                 $model = $this->_objectManager->create('WS\Manufacturer\Model\Manufacturer');
                 $data = $this->getRequest()->getPostValue();
                 if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
-                    try{
+                    try {
                         $uploaderFactory = $this->uploaderFactory->create(['fileId' => 'image']);
                         $uploaderFactory->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
                         $imageAdapter = $this->adapterFactory->create();
-                        $uploaderFactory->addValidateCallback('custom_image_upload',$imageAdapter,'validateUploadFile');
+                        $uploaderFactory->addValidateCallback('custom_image_upload', $imageAdapter, 'validateUploadFile');
                         $uploaderFactory->setAllowRenameFiles(true);
                         $uploaderFactory->setFilesDispersion(true);
                         $mediaDirectory = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA);
@@ -30,22 +29,22 @@ class Save extends Items
                             );
                         }
 
-                        $imagePath = 'ws/manufacturer'.$result['file'];
+                        $imagePath = 'ws/manufacturer' . $result['file'];
                         $data['image'] = $imagePath;
                     } catch (\Exception $e) {
                     }
                 }
-                if(isset($data['image']['delete']) && $data['image']['delete'] == 1) {
+                if (isset($data['image']['delete']) && $data['image']['delete'] == 1) {
                     $mediaDirectory = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
                     $file = $data['image']['value'];
-                    $imgPath = $mediaDirectory.$file;
-                    if ($this->_file->isExists($imgPath))  {
+                    $imgPath = $mediaDirectory . $file;
+                    if ($this->_file->isExists($imgPath)) {
                         $this->_file->deleteFile($imgPath);
                     }
 //                    var_dump(13);
-                    $data['image'] = NULL;
+                    $data['image'] = null;
                 }
-                if (isset($data['image']['value'])){
+                if (isset($data['image']['value'])) {
                     $data['image'] = $data['image']['value'];
                 }
                 $inputFilter = new \Zend_Filter_Input(

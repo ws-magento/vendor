@@ -3,11 +3,9 @@
 namespace WS\Manufacturer\Controller\Adminhtml\All;
 
 use Magento\Backend\App\Action\Context;
-use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Setup\Exception;
 use Magento\Ui\Component\MassAction\Filter;
-use Magento\Framework\View\Result\PageFactory;
+use WS\Manufacturer\Api\ManufacturerRepositoryInterface;
 use WS\Manufacturer\Model\ResourceModel\Manufacturer\CollectionFactory;
 
 class MassDelete extends \Magento\Backend\App\Action
@@ -21,6 +19,10 @@ class MassDelete extends \Magento\Backend\App\Action
      * @var CollectionFactory
      */
     protected $collectionFactory;
+    /**
+     * @var ManufacturerRepositoryInterface
+     */
+    private $manRepository;
 
     /**
      * @param Context $context
@@ -30,11 +32,13 @@ class MassDelete extends \Magento\Backend\App\Action
     public function __construct(
         Context $context,
         Filter $filter,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        ManufacturerRepositoryInterface $manRepository
     ) {
         parent::__construct($context);
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
+        $this->manRepository = $manRepository;
     }
 
     /**
@@ -49,10 +53,20 @@ class MassDelete extends \Magento\Backend\App\Action
 
         $collectionSize = 0;
         foreach ($collection as $record) {
-            $forDelete = $this->_objectManager->get('WS\Manufacturer\Model\Manufacturer')->load($record->getId());
-            if ($forDelete->delete()){
-                $collectionSize++;
+            $id = $record->getId();
+            try {
+                $forDelete = $this->manRepository->getById($id);
+                if ($this->manRepository->delete($forDelete)){
+                    $collectionSize++;
+                }
+            } catch (\Exception $e) {
+                $this->messageManager->addErrorMessage(__('Manufacturer with id=%1 doesn\'t exist', $id));
             }
+
+//            $forDelete = $this->_objectManager->get('WS\Manufacturer\Model\Manufacturer')->load();
+//            if ($forDelete->delete()){
+//                $collectionSize++;
+//            }
         }
 
         $this->messageManager->addSuccess(__('A total of %1 record(s) have been deleted.', $collectionSize));
