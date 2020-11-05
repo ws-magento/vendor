@@ -15,7 +15,6 @@
         <arguments>
             <argument name="mainTable" xsi:type="string">manufacturer</argument>
             <argument name="eventPrefix" xsi:type="string">manufacturer_all_collection</argument>
-<!--            <argument name="eventObject" xsi:type="string">block_grid_collection</argument>-->
             <argument name="resourceModel" xsi:type="string">WS\Manufacturer\Model\ResourceModel\Manufacturer</argument>
         </arguments>
     </type>
