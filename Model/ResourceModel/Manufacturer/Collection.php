@@ -13,9 +13,8 @@ class Collection extends AbstractCollection
      *
      * @return void
      */
-    protected function _construct()
-    {
-//        $this->_init(\WS\Manufacturer\Model\Manufacturer::class, \WS\Manufacturer\Model\ResourceModel\Manufacturer::class);
+    protected function _construct(
+    ) {
         $this->_init('\WS\Manufacturer\Model\Manufacturer', '\WS\Manufacturer\Model\ResourceModel\Manufacturer');
     }
 }

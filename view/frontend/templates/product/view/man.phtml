@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var $block \WS\Manufacturer\Block\Catalog\Product\View\Manufacturer
+ */
+
+$out = $block->getManufacturersFiltered();
+if (sizeof($out)): ?>
+    <div class="manufacturers images">
+        <?php foreach ($out as $item): ?>
+            <img src="<?= $item->getImage() ?>" alt="<?= $item->getName() ?>">
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

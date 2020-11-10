@@ -44,4 +44,14 @@
             <argument name="imageUploader" xsi:type="object">ManufacturerImage</argument>
         </arguments>
     </type>
+
+    <type name="WS\Manufacturer\Api\Data\ManufacturerInterface">
+        <plugin name="ws_manufacturer_plugin_manufacturer" type="WS\Manufacturer\Plugin\ManufacturerPlugin" />
+    </type>
+
+    <type name="WS\Manufacturer\Plugin\ManufacturerPlugin">
+        <arguments>
+            <argument name="savePath" xsi:type="string">manufacturer/images</argument>
+        </arguments>
+    </type>
 </config>

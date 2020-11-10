@@ -27,6 +27,15 @@ interface ManufacturerRepositoryInterface
     public function getById($manufacturerId);
 
     /**
+     * Retrieve block.
+     *
+     * @param string $ids
+     * @return ManufacturerInterface[]
+     * @throws LocalizedException
+     */
+    public function getByIds($ids);
+
+    /**
      * Retrieve blocks matching the specified criteria.
      *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
@@ -53,4 +62,11 @@ interface ManufacturerRepositoryInterface
      * @throws LocalizedException
      */
     public function deleteById($manufacturerId);
+
+    /**
+     * All manufacturer records
+     *
+     * @return ManufacturerInterface[]
+     */
+    public function getAll();
 }

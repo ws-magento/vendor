@@ -103,7 +103,7 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
     {
         try {
             $this->resource->save($manufacturer);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
     }
@@ -148,8 +148,6 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
         return $this->delete($this->getById($manufacturerId));
     }
 
-
-
     /**
      * Retrieve collection processor
      *
@@ -164,5 +162,43 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
             );
         }
         return $this->collectionProcessor;
+    }
+
+    /**
+     * @param string $ids
+     * @return array|ManufacturerInterface[]
+     */
+    public function getByIds($ids)
+    {
+        if (is_string($ids)) {
+            $ids = array_map(function ($v) {
+                return (int)$v;
+            }, explode(',', $ids));
+        }
+        $manCollection = $this->manufacturerCollectionFactory->create();
+
+        $result = [];
+        $manCollection->addFieldToFilter('manufacturer_id', $ids);
+        foreach ($manCollection->getItems() as $man) {
+            $result[] = $man;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array|ManufacturerInterface[]
+     */
+    public function getAll()
+    {
+        $manCollection = $this->manufacturerCollectionFactory->create();
+        $manCollection->addOrder('manufacturer_id');
+
+        $result = [];
+        foreach ($manCollection->getItems() as $man) {
+            $result[] = $man;
+        }
+
+        return $result;
     }
 }

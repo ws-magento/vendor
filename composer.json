@@ -2,7 +2,7 @@
     "name": "ws/manufacturer",
     "description": "Simple manufacturer task",
     "type": "magento2-module",
-    "version": "0.0.20",
+    "version": "0.0.21",
     "license":  [
         "OSL-3.0",
         "AFL-3.0"

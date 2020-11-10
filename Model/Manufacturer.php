@@ -21,11 +21,6 @@ class Manufacturer extends AbstractModel implements ManufacturerInterface, Ident
 {
     const CACHE_TAG = 'ws_man';
 
-    const ID = 'id';
-    const NAME = 'name';
-    const DESC = 'description';
-    const IMG = 'image';
-
     private $_loadedData;
 
     /**
@@ -96,18 +91,33 @@ class Manufacturer extends AbstractModel implements ManufacturerInterface, Ident
         return $this->getData(self::IMG);
     }
 
-    /*    public function getData()
-        {
-            if ($this->_loadedData){
-                return $this->_loadedData;
-            }
-            $items = $this->collection->getItems();
-            foreach ($items as $man){
-                $data = $man->getData();
-                $data['image'] = ['image' => $data['image']];
-                $this->_loadedData[$man->getId()] = $data;
-            }
+    public function getDateAdded()
+    {
+        return $this->getData(self::DATE_ADD);
+    }
 
-            return $this->_loadedData;
-        }*/
+    public function getDescription()
+    {
+        return $this->getData(self::DESC);
+    }
+
+    public function setName($name)
+    {
+        return $this->setData(self::NAME, $name);
+    }
+
+    public function setImage($image)
+    {
+        return $this->setData(self::IMG, $image);
+    }
+
+    public function setDescription($description)
+    {
+        return $this->setData(self::DESC, $description);
+    }
+
+    public function setDateAdded($date)
+    {
+        return $this->setData(self::DATE_ADD, $date);
+    }
 }

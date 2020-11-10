@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/ws/manufacturers/:manufacturerId" method="DELETE">
+        <service class="WS\Manufacturer\Api\ManufacturerRepositoryInterface"
+                 method="deleteById"/>
+        <resources>
+            <resource ref="Ws_Manufacturer::man"/>
+        </resources>
+    </route>
+
+    <route url="/V1/ws/manufacturers/:manufacturerId" method="GET">
+        <service class="WS\Manufacturer\Api\ManufacturerRepositoryInterface"
+                 method="getById"/>
+        <resources>
+            <resource ref="Ws_Manufacturer::man"/>
+        </resources>
+    </route>
+
+    <route url="/V1/ws/manufacturers/many/:ids" method="GET">
+        <service class="WS\Manufacturer\Api\ManufacturerRepositoryInterface"
+                 method="getByIds"/>
+        <resources>
+            <resource ref="Ws_Manufacturer::man"/>
+        </resources>
+    </route>
+
+    <route url="/V1/ws/manufacturers/all" method="GET">
+        <service class="WS\Manufacturer\Api\ManufacturerRepositoryInterface"
+                 method="getAll"/>
+        <resources>
+            <resource ref="Ws_Manufacturer::man"/>
+        </resources>
+    </route>
+
+    <route url="/V1/ws/manufacturers" method="POST">
+        <service class="WS\Manufacturer\Api\ManufacturerRepositoryInterface"
+                 method="save"/>
+        <resources>
+            <resource ref="Ws_Manufacturer::man"/>
+        </resources>
+    </route>
+
+</routes>

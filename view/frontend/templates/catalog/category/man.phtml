@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var $block \WS\Manufacturer\Block\Catalog\Category\View\Manufacturer
+ */
+
+//echo 123;
+
+$manufacturers = $block->getManufacturers();
+if (sizeof($manufacturers)):?>
+    <div class="manufacturers">
+        <?php foreach ($manufacturers as $man): ?>
+            <div class="manufacturer">
+                <div class="name"><?= $man->getName(); ?></div>
+                <?php if (strlen($man->getDescription())): ?>
+                    <div class="description">
+                        <?= $man->getDescription(); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
